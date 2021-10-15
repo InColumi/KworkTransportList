@@ -146,6 +146,7 @@
     <ClInclude Include="Car.h" />
     <ClInclude Include="Train.h" />
     <ClInclude Include="Transport.h" />
+    <ClInclude Include="TypeTransport.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
