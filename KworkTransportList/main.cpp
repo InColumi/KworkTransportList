@@ -3,6 +3,7 @@
 #include "Transport.h"
 #include "Car.h"
 #include "Train.h"
+#include "Airplane.h"
 
 /*
 Сам вариант:  Создать базовый класс «Транспорт» и производные от него классы «Автомобиль», «Поезд», «Самолет».
@@ -35,31 +36,6 @@
 */
 
 using namespace std;
-
-class Airplane : Transport
-{
-private:
-	double _flightAltitude;
-
-public:
-	Airplane(): _flightAltitude(), Transport(){}
-	Airplane(double flightAltitude, std::string name, unsigned int countOfSeats, std::string dateOfBirth, std::string color, double weight)
-		: Transport(name, countOfSeats, dateOfBirth, color, weight)
-	{
-		_flightAltitude = flightAltitude;
-	}
-
-	void ShowInfo()
-	{
-		std::cout << "Airplane\n";
-		PrintInfo();
-	}
-
-	void Move()
-	{
-		std::cout << "Я - самолёт. Лечу на высоте: " << _flightAltitude << " км\n";
-	}
-};
 
 int main()
 {
