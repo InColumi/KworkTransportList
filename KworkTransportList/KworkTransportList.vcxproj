@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Airplane.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Cargo.h" />
     <ClInclude Include="Train.h" />
     <ClInclude Include="Transport.h" />
     <ClInclude Include="TypeTransport.h" />
