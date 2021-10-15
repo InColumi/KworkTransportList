@@ -3,7 +3,7 @@
 #include <iostream>
 #include "TypeTransport.h"
 
-class PassengerTransport : TypeTransport
+class PassengerTransport : public TypeTransport
 {
 private:
 	unsigned int _countPassengers;

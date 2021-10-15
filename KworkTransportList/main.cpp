@@ -42,24 +42,71 @@
 */
 
 using namespace std;
+template <typename T>
+struct Node
+{
+	T val;
+	Node* next;
+
+	Node(T _val) : val(_val), next(nullptr) {}
+};
+
+template <typename T>
+struct List
+{
+	Node<T>* first;
+	Node<T>* last;
+
+	List() : first(nullptr), last(nullptr) {}
+
+	bool is_empty()
+	{
+		return first == nullptr;
+	}
+
+	void push_back(T _val)
+	{
+		Node<T>* p = new Node<T>(_val);
+		if (is_empty())
+		{
+			first = p;
+			last = p;
+			return;
+		}
+		last->next = p;
+		last = p;
+	}
+
+	void Show()
+	{
+		if (is_empty()) return;
+		Node<T>* p = first;
+		while (p)
+		{
+			p->val.ShowInfo();
+			p = p->next;
+		}
+		cout << endl;
+	}
+};
 
 Transport inputTransport()
 {
-	std::string name;
+	string name;
 	unsigned int countofSeats;
-	std::string dateOfBirth;
-	std::string color;
+	string dateOfBirth;
+	string color;
 	double weight;
-	std::cout << "Введите информацию о транспорте:\n";
-	std::cout << "Введите название: ";
+	cout << "Введите информацию о транспорте:\n";
+	cout << "Введите название: ";
 	cin >> name;
-	std::cout << "Введите кол-во мест для посадки: ";
+	cout << "Введите кол-во мест для посадки: ";
 	cin >> countofSeats;
-	std::cout << "Введите дату выпуска вида(дд:мм:гггг): ";
+	cout << "Введите дату выпуска вида(дд:мм:гггг): ";
 	cin >> dateOfBirth;
-	std::cout << "Введите цвет: ";
+	cout << "Введите цвет: ";
 	cin >> color;
-	std::cout << "Введите вес: ";
+	cout << "Введите вес: ";
 	cin >> weight;
 
 	return Transport(name, countofSeats, dateOfBirth, color, weight);
@@ -67,12 +114,12 @@ Transport inputTransport()
 
 TypeTransport inputTypeTransport()
 {
-	std::string pointA;
-	std::string pointB;
-	std::cout << "Введите информацию о типе транспорта: ";
-	std::cout << "Введите пункт отправки: ";
+	string pointA;
+	string pointB;
+	cout << "Введите информацию о типе транспорта: ";
+	cout << "Введите пункт отправки: ";
 	cin >> pointA;
-	std::cout << "Введите пункт назначения: ";
+	cout << "Введите пункт назначения: ";
 	cin >> pointB;
 	Transport transport = inputTransport();
 
@@ -82,35 +129,36 @@ TypeTransport inputTypeTransport()
 Transport inputDifferentTransport()
 {
 	int numberCommand;
-	std::string userInput;
+	string userInput;
 	Transport transport;
 
-	std::string name;
+	string name;
 	unsigned int countofSeats;
-	std::string dateOfBirth;
-	std::string color;
+	string dateOfBirth;
+	string color;
 	double weight;
 
-	std::cout << "Выберете транспорт:\n";
-	std::cout << "1) Машина\n";
-	std::cout << "2) Поезд\n";
-	std::cout << "3) Самолёт\n";
+	cout << "Выберете транспорт:\n";
+	cout << "1) Машина\n";
+	cout << "2) Поезд\n";
+	cout << "3) Самолёт\n";
 	cin >> userInput;
 	try
 	{
-		std::cout << "Введите информацию о транспорте:\n";
-		std::cout << "Введите название: ";
+		numberCommand = stoi(userInput);
+		cout << "Введите информацию о транспорте:\n";
+		cout << "Введите название: ";
 		cin >> name;
-		std::cout << "Введите кол-во мест для посадки: ";
+		cout << "Введите кол-во мест для посадки: ";
 		cin >> countofSeats;
-		std::cout << "Введите дату выпуска вида(дд:мм:гггг): ";
+		cout << "Введите дату выпуска вида(дд:мм:гггг): ";
 		cin >> dateOfBirth;
-		std::cout << "Введите цвет: ";
+		cout << "Введите цвет: ";
 		cin >> color;
-		std::cout << "Введите вес: ";
+		cout << "Введите вес: ";
 		cin >> weight;
 	}
-	catch (const std::exception&)
+	catch (const exception&)
 	{
 		numberCommand = 4;
 	}
@@ -120,8 +168,8 @@ Transport inputDifferentTransport()
 	case 1:
 	{
 		double mileage;
-		std::cout << "Вы выбрали Машину\n";
-		std::cout << "Введите км, которое она прошла:";
+		cout << "Вы выбрали Машину\n";
+		cout << "Введите км, которое она прошла:";
 		cin >> mileage;
 		transport = Car(mileage, name, countofSeats, dateOfBirth, color, weight);
 		break;
@@ -129,8 +177,8 @@ Transport inputDifferentTransport()
 	case 2:
 	{
 		double raiGage;
-		std::cout << "Вы выбрали Поезд\n";
-		std::cout << "Введите ширину рельс по которым он ездит:";
+		cout << "Вы выбрали Поезд\n";
+		cout << "Введите ширину рельс по которым он ездит:";
 		cin >> raiGage;
 		transport = Train(raiGage, name, countofSeats, dateOfBirth, color, weight);
 		break;
@@ -138,14 +186,14 @@ Transport inputDifferentTransport()
 	case 3:
 	{
 		double flightAltitude;
-		std::cout << "Вы выбрали Самолёт\n";
-		std::cout << "Введите высоту, на которой он летает:";
+		cout << "Вы выбрали Самолёт\n";
+		cout << "Введите высоту, на которой он летает:";
 		cin >> flightAltitude;
 		transport = Airplane(flightAltitude, name, countofSeats, dateOfBirth, color, weight);
 		break;
 	}
 	default:
-		std::cout << "Неизвестная команда!\n";
+		cout << "Неизвестная команда!\n";
 		break;
 	}
 	return transport;
@@ -155,82 +203,101 @@ void ShowMenu()
 {
 	bool isExist = false;
 	int numberCommand;
-	std::string userInput;
+	string userInput;
+	Transport transport;
+	TypeTransport typeTransport;
+	string pointA;
+	string pointB;
+	List<Transport> listTransport;
+	List<TypeTransport> listTypeTransport;
 	while (isExist == false)
 	{
-		std::cout << "Выберете тип транспорта:\n";
-		std::cout << "1) Грузовой\n";
-		std::cout << "2) Пассажирский\n";
-		std::cout << "3) Выход из программы\n";
+		cout << "Выберете тип транспорта:\n";
+		cout << "1) Грузовой\n";
+		cout << "2) Пассажирский\n";
+		cout << "3) Показать список транспорта\n";
+		cout << "4) Показать список видов транспорта\n";
+		cout << "5) Выход из программы\n";
 		cin >> userInput;
 		try
 		{
 			numberCommand = stoi(userInput);
 		}
-		catch (const std::exception&)
+		catch (const exception&)
 		{
-			numberCommand = 4;
+			numberCommand = -1;
 		}
 
 		switch (numberCommand)
 		{
 		case 1:
 		{
-			std::cout << "Вы выбрали Грузовой\n";
+			cout << "Введите информацию о типе транспорта:\n";
+			cout << "Введите пункт отправки: ";
+			cin >> pointA;
+			cout << "Введите пункт назначения: ";
+			cin >> pointB;
+
+			double weightOfCargo;
+			cout << "Вы выбрали Грузовой\n";
+			cout << "Введите вес груза для перевозки:";
+			cin >> weightOfCargo;
+			transport = inputDifferentTransport();
+			typeTransport = CargoTransport(weightOfCargo, transport, pointA, pointB);
+			listTransport.push_back(transport);
+			listTypeTransport.push_back(typeTransport);
 			break;
 		}
 		case 2:
 		{
-			std::cout << "Вы выбрали Пассажирский\n";
+			cout << "Введите информацию о типе транспорта:\n";
+			cout << "Введите пункт отправки: ";
+			cin >> pointA;
+			cout << "Введите пункт назначения: ";
+			cin >> pointB;
+
+			unsigned int countPassengers;
+			cout << "Вы выбрали Пассажирский\n";
+			cout << "Введите кол-во пассажиров:";
+			cin >> countPassengers;
+			transport = inputDifferentTransport();
+			typeTransport = PassengerTransport(countPassengers, transport, pointA, pointB);
+			listTransport.push_back(transport);
+			listTypeTransport.push_back(typeTransport);
 			break;
 		}
 		case 3:
+		{
+			listTransport.Show();
+			break;
+		}
+		case 4:
+		{
+			listTypeTransport.Show();
+			break;
+		}
+		case 5:
 		{
 			isExist = true;
 			break;
 		}
 		default:
-			std::cout << "Неизвестная команда!\n";
+			cout << "Неизвестная команда!\n";
 			break;
 		}
 	}
-	std::cout << "Программа закончила свою работу.\n";
+	cout << "Программа закончила свою работу.\n";
 }
 
 int main()
 {
 	setlocale(LC_ALL, "rus");
 	ShowMenu();
-	Transport transport = inputTransport();
-	transport.ShowInfo();
-	transport.Move();
-	std::cout << '\n';
-
-	Car car(123.3, "Ford", 5, "12:12:2020", "Red", 1.2);
-	car.ShowInfo();
-	car.Move();
-	std::cout << '\n';
-
-	Train train(80, "Flesh", 5, "08:12:1967", "Broun", 1.2);
-	train.ShowInfo();
-	train.Move();
-	std::cout << '\n';
-
+	Transport transport;
 	Airplane airplane(8, "Bee", 5, "08:12:1987", "White", 10);
-	airplane.ShowInfo();
-	airplane.Move();
-	std::cout << '\n';
+	Train train(80, "Flesh", 5, "08:12:1967", "Broun", 1.2);
+	Car car(123.3, "Ford", 5, "12:12:2020", "Red", 1.2);
 
-	TypeTransport typeTransport;
-	typeTransport.ShowInfo();
-	std::cout << '\n';
-
-	CargoTransport cargo(10, train, "Россия", "Китай");
-	cargo.ShowInfo();
-	std::cout << '\n';
-
-	PassengerTransport passengerTransport(10, train, "Россия", "Китай");
-	passengerTransport.ShowInfo();
 	system("pause");
 	return 0;
 }
