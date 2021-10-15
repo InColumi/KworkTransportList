@@ -36,31 +36,30 @@
 
 using namespace std;
 
-class Train :Transport
+class Airplane : Transport
 {
 private:
-	double _raiGage;
+	double _flightAltitude;
 
 public:
-	Train() : _raiGage(0), Transport() {}
-	Train(double raiGage, std::string name, unsigned int countOfSeats, std::string dateOfBirth, std::string color, double weight)
+	Airplane(): _flightAltitude(), Transport(){}
+	Airplane(double flightAltitude, std::string name, unsigned int countOfSeats, std::string dateOfBirth, std::string color, double weight)
 		: Transport(name, countOfSeats, dateOfBirth, color, weight)
 	{
-		_raiGage = raiGage;
+		_flightAltitude = flightAltitude;
 	}
 
 	void ShowInfo()
 	{
-		std::cout << "Car\n";
+		std::cout << "Airplane\n";
 		PrintInfo();
 	}
 
 	void Move()
 	{
-		std::cout << "я - поезд. ≈ду по рельсам с шириной колеи: " << _raiGage << " см.\n";
+		std::cout << "я - самолЄт. Ћечу на высоте: " << _flightAltitude << " км\n";
 	}
 };
-
 
 int main()
 {
@@ -74,9 +73,14 @@ int main()
 	car.ShowInfo();
 	car.Move();
 
-	Train train(80, "flesh", 5, "08:12:1967", "Broun", 1.2);
+	Train train(80, "Flesh", 5, "08:12:1967", "Broun", 1.2);
 	train.ShowInfo();
 	train.Move();
+
+	Airplane airplane(8, "Bee", 5, "08:12:1987", "White", 10);
+	airplane.ShowInfo();
+	airplane.Move();
+
 	system("pause");
 	return 0;
 }

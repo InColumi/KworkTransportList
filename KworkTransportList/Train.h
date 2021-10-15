@@ -17,7 +17,7 @@ public:
 
 	void ShowInfo()
 	{
-		std::cout << "Car\n";
+		std::cout << "Train\n";
 		PrintInfo();
 	}
 
