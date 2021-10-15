@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Transport.h"
 
-class Car : Transport
+class Car : public Transport
 {
 private:
 	double _mileage;

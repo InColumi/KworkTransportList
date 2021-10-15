@@ -4,6 +4,7 @@
 #include "Car.h"
 #include "Train.h"
 #include "Airplane.h"
+#include "TypeTransport.h"
 
 /*
 Сам вариант:  Создать базовый класс «Транспорт» и производные от него классы «Автомобиль», «Поезд», «Самолет».
@@ -39,35 +40,22 @@
 
 using namespace std;
 
-class TypeTransport
+class Cargo: public  TypeTransport
 {
 private:
-	std::string _pointA;
-	std::string _pointB;
-	Transport _transport;
-
+	double _weightOfCargo;
 public:
-	TypeTransport(): _transport(), _pointA("default point A"), _pointB("default point B") {}
-	TypeTransport(Transport tansport, std::string pointA, std::string pointB)
+	Cargo() : _weightOfCargo(0), TypeTransport() {}
+	Cargo(double weightOfCargo, Transport tansport, std::string pointA, std::string pointB) : TypeTransport(tansport, pointA, pointB)
 	{
-		_pointA = pointA;
-		_pointB = pointB;
-		_transport = tansport;
+		_weightOfCargo = weightOfCargo;
 	}
-
-	virtual void ShowInfo()
+	
+	void ShowInfo()
 	{
-		std::cout << "TypeTransport\n";
+		std::cout << "Грузовой тип\n";
+		std::cout << "Вес моего груза: " << _weightOfCargo << " т.\n";
 		PrintInfo();
-	}
-
-protected:
-
-	void PrintInfo()
-	{
-		std::cout << "Выехал из: " << _pointA << '\n';
-		std::cout << "Еду в: " << _pointB << '\n';
-		_transport.ShowInfo();
 	}
 };
 
@@ -97,6 +85,10 @@ int main()
 
 	TypeTransport typeTransport;
 	typeTransport.ShowInfo();
+	std::cout << '\n';
+
+	Cargo cargo(10, train, "Россия", "Китай");
+	cargo.ShowInfo();
 	system("pause");
 	return 0;
 }

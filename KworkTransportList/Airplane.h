@@ -2,7 +2,7 @@
 #include "Transport.h"
 #include <iostream>
 
-class Airplane : Transport
+class Airplane : public Transport
 {
 private:
 	double _flightAltitude;

@@ -2,7 +2,7 @@
 #include "Transport.h"
 #include <iostream>
 
-class Train :Transport
+class Train : public Transport
 {
 private:
 	double _raiGage;
