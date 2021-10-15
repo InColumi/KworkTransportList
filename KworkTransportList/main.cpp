@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include "Transport.h"
-
+#include "Car.h"
 /*
 Сам вариант:  Создать базовый класс «Транспорт» и производные от него классы «Автомобиль», «Поезд», «Самолет».
 Создать базовый класс «Тип» и производные от него классы «Грузовой» и «Пассажирский».
@@ -34,7 +34,30 @@
 
 using namespace std;
 
+class Train :Transport
+{
+private:
+	double _raiGage;
 
+public:
+	Train() : _raiGage(0), Transport() {}
+	Train(double raiGage, std::string name, unsigned int countOfSeats, std::string dateOfBirth, std::string color, double weight)
+		: Transport(name, countOfSeats, dateOfBirth, color, weight)
+	{
+		_raiGage = raiGage;
+	}
+
+	void ShowInfo()
+	{
+		std::cout << "Car\n";
+		PrintInfo();
+	}
+
+	void Move()
+	{
+		std::cout << "Я - поезд. Еду по рельсам с шириной колеи: " << _raiGage << " см.\n";
+	}
+};
 
 
 int main()
@@ -48,6 +71,10 @@ int main()
 	Car car(123.3, "Ford", 5, "12:12:2020", "Red", 1.2);
 	car.ShowInfo();
 	car.Move();
+
+	Train train(80, "flesh", 5, "08:12:1967", "Broun", 1.2);
+	train.ShowInfo();
+	train.Move();
 	system("pause");
 	return 0;
 }
