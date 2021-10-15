@@ -38,5 +38,8 @@
     <ClInclude Include="Cargo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PassengerTransport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
